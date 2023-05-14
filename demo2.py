@@ -12,7 +12,8 @@ st.title("一键文档优化工具")
 llm = OpenAI(temperature=0.7, max_tokens=2500)
 chains = []
 # Add a radio button for navigation
-page = st.sidebar.radio("## 导航", ["优化文本", "优化 Word 文件"])
+st.sidebar.header("导航")
+page = st.sidebar.radio(["优化文本", "优化 Word 文件"])
 
 st.sidebar.header("优化功能选择：")
 
