@@ -5,10 +5,14 @@ from langchain.chains import LLMChain, SimpleSequentialChain
 from langchain.prompts import PromptTemplate
 import io
 
-st.title("一键文档优化工具")
+st.sidebar.title("一键文档优化工具")
 
 llm = OpenAI(temperature=0.7, max_tokens=2500)
 chains = []
+
+# Add a radio button for navigation
+st.sidebar.markdown("<h3>导航</h3>", unsafe_allow_html=True)
+page = st.sidebar.radio("", ["优化文本", "优化 Word 文件"])
 
 # 为每一个优化功能创建一个复选框，并根据用户的选择来创建对应的模型链
 if st.sidebar.checkbox("拼写检查优化"):
@@ -43,9 +47,6 @@ if st.sidebar.checkbox("段落结构优化"):
 
 sequential_chain = SimpleSequentialChain(chains=chains)
 
-# Add a radio button for navigation
-st.sidebar.markdown("<h3>导航</h3>", unsafe_allow_html=True)
-page = st.sidebar.radio("", ["优化文本", "优化 Word 文件"])
 
 if page == "优化文本":
     # Add a text area for user to paste the text
