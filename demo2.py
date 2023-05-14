@@ -17,7 +17,7 @@ page = st.sidebar.radio("", ["优化文本", "优化 Word 文件"])
 st.sidebar.header("优化功能选择：")
 # 为每一个优化功能创建一个复选框，并根据用户的选择来创建对应的模型链
 if st.sidebar.checkbox("拼写检查优化"):
-    template = "你是一位专业的技术文档工程师，现在我希望你对以下文本修正错别字并输出修正后的内容。文本如下：{text}"
+    template = "你是一位专业的技术文档工程师，现在我希望你对以下文本修正错别字和不正确的用词并输出修正后的内容。文本如下：{text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
     chains.append(chain)
