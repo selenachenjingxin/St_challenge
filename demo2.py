@@ -62,7 +62,7 @@ if page == "优化文本":
     col1, col2 = st.columns(2)
 
     # Add a button to trigger the processing
-    if st.button('优化文本'):
+    if st.button('开始优化文本'):
         if input_text:
             response = sequential_chain.run(input_text)
             col1.write("原始文本：")
