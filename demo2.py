@@ -5,7 +5,7 @@ from langchain.chains import LLMChain, SimpleSequentialChain
 from langchain.prompts import PromptTemplate
 import io
 
-st.sidebar.title("一键文档优化工具")
+st.title("一键文档优化工具")
 
 llm = OpenAI(temperature=0.7, max_tokens=2500)
 chains = []
