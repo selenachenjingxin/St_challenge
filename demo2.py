@@ -11,6 +11,8 @@ st.title("一键文档优化工具")
 
 llm = OpenAI(temperature=0.7, max_tokens=2500)
 chains = []
+# Add a radio button for navigation
+page = st.sidebar.radio("## 导航", ["优化文本", "优化 Word 文件"])
 
 st.sidebar.header("优化功能选择：")
 
@@ -48,8 +50,7 @@ if st.sidebar.checkbox("段落结构优化"):
 sequential_chain = SimpleSequentialChain(chains=chains)
 
 
-# Add a radio button for navigation
-page = st.sidebar.radio("导航", ["优化文本", "优化 Word 文件"])
+
 
 if page == "优化文本":
     # Add a text area for user to paste the text
