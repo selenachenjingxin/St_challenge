@@ -5,6 +5,15 @@ from langchain.llms import OpenAI
 from langchain.chains import LLMChain, SimpleSequentialChain
 from langchain.prompts import PromptTemplate
 import io
+import base64
+from docx.shared import Pt
+import base64
+import os
+from docx import Document
+import html2text
+import pypandoc
+import tempfile
+import os
 
 # Show the input text in a readable format
 st.set_page_config(layout='wide')
@@ -73,17 +82,27 @@ col1.checkbox("Optimize Paragraph Structure",value=True)
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
 
-
-
-# Adding a horizontal line
-st.markdown('---')
-
 if input_text:
     # Show the input text in a readable format in the left column
     col1.markdown("**Original Content**")
     col1.markdown(input_text, unsafe_allow_html=True)
     response = chain.run(input_text)
 
+    # Write to a temporary file
+    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.docx')
+
+    # Convert the markdown to docx format
+    pypandoc.convert_text(response, 'docx', format='md', outputfile=temp_file.name)
+
     # Show the output text in a readable format in the right column
-  
+    col2.markdown("**Transformed Content**")
     col2.markdown(response, unsafe_allow_html=True)
+    
+    # Add a download button for the docx file
+    with open(temp_file.name, 'rb') as file:
+        btn = col2.download_button(
+            label="Download as Word",
+            data=file.read(),
+            file_name="output.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
