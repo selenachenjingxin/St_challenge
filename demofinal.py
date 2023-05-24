@@ -11,8 +11,6 @@ import base64
 import os
 from docx import Document
 import html2text
-import pypandoc
-import tempfile
 import os
 
 # Show the input text in a readable format
