@@ -13,7 +13,7 @@ st.set_page_config(layout='wide')
 st.title('Technical Document Rewriter')
 
 st.write("""
-Welcome to this technical document rewriter!🥳 \n
+Welcome to this technical document rewriter!🥳 
 This application helps you rewrite your 
 technical documents not originally written in Information Mapping/DITA into the 
 required structured documents.
