@@ -51,8 +51,8 @@ chain = LLMChain(llm=llm, prompt=prompt)
 
 col1, col2 = st.columns([1,2])  
 
-col2.write("""
-Welcome to this technical document rewriter!🥳 
+st.write("""
+Welcome to this technical document rewriter!🥳 \n
 This application helps you rewrite your 
 technical documents not originally written in Information Mapping/DITA into the 
 required structured documents.
