@@ -60,6 +60,7 @@ required structured documents.
 # Text input from the user
 input_text = col1.text_area("Paste your text here", height=400)
 chains = []
+col2.title('Choose function')
 if col2.checkbox("Grammar Check Optimization"):
     template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
