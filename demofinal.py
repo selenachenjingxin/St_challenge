@@ -60,22 +60,22 @@ After Transformation:
 Content to be transformed by you:{text}
 
 '''
-llm = OpenAI(temperature=0.8,max_tokens=1500)
+llm = OpenAI(temperature=0.9,max_tokens=1500)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
-col1, col2 = st.columns([1,3])  
+col1, col2 = st.columns([2,1])  
 
 # Text input from the user
-input_text = col2.text_area("Paste your text here", height=400)
+input_text = col1.text_area("Paste your text here", height=400)
 chains = []
-col1.markdown('## Functions')
-col1.checkbox("Rewrite to be Structured", value=True)
-col1.checkbox("Check and Correct Spelling", value=True)
-col1.checkbox("Check and Correct Grammar",value=True)
-col1.checkbox("Check and Correct Punctuation",value=True)
-col1.checkbox("Optimize Sentence Structure",value=True)
-col1.checkbox("Optimize Paragraph Structure",value=True)
+st.sidebar.markdown('## Functions')
+st.sidebar.checkbox("Rewrite to be Structured", value=True)
+st.sidebar.checkbox("Check and Correct Spelling", value=True)
+st.sidebar.checkbox("Check and Correct Grammar",value=True)
+st.sidebar.checkbox("Check and Correct Punctuation",value=True)
+st.sidebar.checkbox("Optimize Sentence Structure",value=True)
+st.sidebar.checkbox("Optimize Paragraph Structure",value=True)
     
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
