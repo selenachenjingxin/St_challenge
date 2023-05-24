@@ -61,7 +61,7 @@ col1, col2 = st.columns([1,2])
 input_text = col2.text_area("Paste your text here", height=400)
 chains = []
 col1.markdown('## Choose Function')
-col1.checkbox("rewrite to be Structured(default)",bool=True)
+col1.checkbox("Rewrite to be Structured (default)", value=True)
 if col1.checkbox("Grammar Check Optimization"):
     template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
