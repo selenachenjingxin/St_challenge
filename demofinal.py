@@ -12,6 +12,12 @@ st.set_page_config(layout='wide')
 # Title of the app
 st.title('Technical Document Rewriter')
 
+st.write("""
+Welcome to this technical document rewriter!🥳 \n
+This application helps you rewrite your 
+technical documents not originally written in Information Mapping/DITA into the 
+required structured documents.
+""")
 
 template = '''
 Your role:
@@ -51,12 +57,6 @@ chain = LLMChain(llm=llm, prompt=prompt)
 
 col1, col2 = st.columns([1,2])  
 
-st.write("""
-Welcome to this technical document rewriter!🥳 \n
-This application helps you rewrite your 
-technical documents not originally written in Information Mapping/DITA into the 
-required structured documents.
-""")
 # Text input from the user
 input_text = col2.text_area("Paste your text here", height=400)
 chains = []
