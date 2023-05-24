@@ -12,12 +12,6 @@ st.set_page_config(layout='wide')
 # Title of the app
 st.title('Technical Document Rewriter')
 
-# Introductory text
-st.write("""
-Welcome to this technical document rewriter. This application helps you rewrite your 
-technical documents not originally written in Information Mapping/DITA into the 
-required structured documents.
-""")
 
 template = '''
 Your role:
@@ -55,10 +49,11 @@ llm = OpenAI(temperature=0.8,max_tokens=1500)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
-col1, col2, col3 = st.columns([2,1,1])  # The text input area will take up 2/3 of the width.
+col1, col2 = st.columns([2,1])  
 
 col1.write("""
-Welcome to this technical document rewriter. This application helps you rewrite your 
+Welcome to this technical document rewriter!🥳 
+This application helps you rewrite your 
 technical documents not originally written in Information Mapping/DITA into the 
 required structured documents.
 """)
