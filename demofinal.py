@@ -57,7 +57,7 @@ llm = OpenAI(temperature=0.8,max_tokens=1500)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
-col1, col2 = st.columns([1,2])  
+col1, col2 = st.columns([1,3])  
 
 # Text input from the user
 input_text = col2.text_area("Paste your text here", height=400)
