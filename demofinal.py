@@ -60,19 +60,13 @@ col1, col2 = st.columns([1,2])
 # Text input from the user
 input_text = col2.text_area("Paste your text here", height=400)
 chains = []
-col1.markdown('## Choose Function')
+col1.markdown('## Functions')
 col1.checkbox("Rewrite to be Structured", value=True)
 col1.checkbox("Check and Correct Spelling", value=True)
 col1.checkbox("Check and Correct Grammar",value=True)
-
-    
 col1.checkbox("Check and Correct Punctuation",value=True)
-
-
-
-col1.checkbox("Sentence Structure Optimization",value=True)
-
-col1.checkbox("Paragraph Structure Optimization",value=True)
+col1.checkbox("Optimize Sentence Structure",value=True)
+col1.checkbox("Optimize Paragraph Structure",value=True)
     
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
