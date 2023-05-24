@@ -61,33 +61,25 @@ col1, col2 = st.columns([1,2])
 input_text = col2.text_area("Paste your text here", height=400)
 chains = []
 col1.markdown('## Choose Function')
-col1.checkbox("Rewrite to be Structured (default)", value=True)
-if col1.checkbox("Grammar Check Optimization"):
-    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
+col1.checkbox("Rewrite to be Structured", value=True)
+col1.checkbox("Check and Correct Spelling", value=True)
+col1.checkbox("Check and Correct Grammar",value=True)
+'''template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)
-
-if col1.checkbox("Punctuation Check"):
-    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
+    chains.append(chain)'''
+    
+col1.checkbox("Check and Correct Punctuation",value=True)
+'''    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)
+    chains.append(chain)'''
 
-if col1.checkbox("Sentence Structure Optimization"):
-    template = "As a professional technical document engineer, I would like you to optimize the sentence structure of the following text and output the optimized content. The text is as follows: {text}"
-    prompt = PromptTemplate(template=template, input_variables=["text"])
-    chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)
 
-if col1.checkbox("Paragraph Structure Optimization"):
-    template = "As a professional technical document engineer, I would like you to optimize the paragraph structure of the following text, simplify complex paragraphs where possible using ordered or unordered lists, and output the optimized content. The text is as follows: {text}"
-    prompt = PromptTemplate(template=template, input_variables=["text"])
-    chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)
+col1.checkbox("Sentence Structure Optimization",value=True)
 
-sequential_chain = SimpleSequentialChain(chains=chains)
-
+col1.checkbox("Paragraph Structure Optimization",value=True)
+    
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
 
