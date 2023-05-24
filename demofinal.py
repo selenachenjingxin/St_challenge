@@ -49,37 +49,37 @@ llm = OpenAI(temperature=0.8,max_tokens=1500)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
-col1, col2 = st.columns([2,1])  
+col1, col2 = st.columns([1,2])  
 
-col1.write("""
+col2.write("""
 Welcome to this technical document rewriter!🥳 
 This application helps you rewrite your 
 technical documents not originally written in Information Mapping/DITA into the 
 required structured documents.
 """)
 # Text input from the user
-input_text = col1.text_area("Paste your text here", height=400)
+input_text = col2.text_area("Paste your text here", height=400)
 chains = []
-col2.title('Choose function')
-if col2.checkbox("Grammar Check Optimization"):
+col1.markdown('## Choose Function')
+if col1.checkbox("Grammar Check Optimization"):
     template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
     chains.append(chain)
 
-if col2.checkbox("Punctuation Check"):
+if col1.checkbox("Punctuation Check"):
     template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
     chains.append(chain)
 
-if col2.checkbox("Sentence Structure Optimization"):
+if col1.checkbox("Sentence Structure Optimization"):
     template = "As a professional technical document engineer, I would like you to optimize the sentence structure of the following text and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
     chains.append(chain)
 
-if col2.checkbox("Paragraph Structure Optimization"):
+if col1.checkbox("Paragraph Structure Optimization"):
     template = "As a professional technical document engineer, I would like you to optimize the paragraph structure of the following text, simplify complex paragraphs where possible using ordered or unordered lists, and output the optimized content. The text is as follows: {text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
