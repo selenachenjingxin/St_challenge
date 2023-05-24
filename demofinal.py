@@ -64,16 +64,10 @@ col1.markdown('## Choose Function')
 col1.checkbox("Rewrite to be Structured", value=True)
 col1.checkbox("Check and Correct Spelling", value=True)
 col1.checkbox("Check and Correct Grammar",value=True)
-'''template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
-    prompt = PromptTemplate(template=template, input_variables=["text"])
-    chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)'''
+
     
 col1.checkbox("Check and Correct Punctuation",value=True)
-'''    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
-    prompt = PromptTemplate(template=template, input_variables=["text"])
-    chain = LLMChain(llm=llm, prompt=prompt)
-    chains.append(chain)'''
+
 
 
 col1.checkbox("Sentence Structure Optimization",value=True)
