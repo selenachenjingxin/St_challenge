@@ -58,7 +58,7 @@ chain = LLMChain(llm=llm, prompt=prompt)
 col1, col2, col3 = st.columns([2,1,2])  # The text input area will take up 2/3 of the width.
 
 # Text input from the user
-input_text = st.co1.text_area("Paste your text here", height=400)
+input_text = col1.text_area("Paste your text here", height=400)
 
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
