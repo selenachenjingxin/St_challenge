@@ -72,5 +72,5 @@ if input_text:
     response = chain.run(input_text)
 
     # Show the output text in a readable format in the right column
-    col2.markdown("**Transformed Content**")
+  
     col2.markdown(response, unsafe_allow_html=True)
