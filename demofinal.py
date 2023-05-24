@@ -65,6 +65,9 @@ col1, col2 = st.columns(2)
 col1.markdown("**Original Content**")
 col1.markdown(input_text, unsafe_allow_html=True)
 
+# Adding a horizontal line
+st.markdown('***')
+
 if input_text:
     response = chain.run(input_text)
 
