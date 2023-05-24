@@ -55,8 +55,13 @@ llm = OpenAI(temperature=0.8,max_tokens=1500)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
-col1, col2, col3 = st.columns([2,1,2])  # The text input area will take up 2/3 of the width.
+col1, col2, col3 = st.columns([2,1,1])  # The text input area will take up 2/3 of the width.
 
+col1.write("""
+Welcome to this technical document rewriter. This application helps you rewrite your 
+technical documents not originally written in Information Mapping/DITA into the 
+required structured documents.
+""")
 # Text input from the user
 input_text = col1.text_area("Paste your text here", height=400)
 
