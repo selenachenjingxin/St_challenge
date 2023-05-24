@@ -25,7 +25,9 @@ You have extensive experience as a technical documentation engineer, with a tale
 
 Your task:
 
-I will give you an example of content that have been converted into Information Mapping style. You need to apply what you have learned to convert another piece of content. Make sure that you do not leave out any information, which means all information should be found in the transformed content. Just show me the transformed content.
+I will give you an example of content that have been converted into Information Mapping style. You need to apply what you have learned to convert another piece of content. Make sure that you do not leave out any information, which means all information should be found in the transformed content. 
+And you should also optimize the content quality.
+Just show me the transformed content.
 
 Example1:
 
