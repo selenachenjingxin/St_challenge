@@ -59,18 +59,45 @@ required structured documents.
 """)
 # Text input from the user
 input_text = col1.text_area("Paste your text here", height=400)
+chains = []
+if col2.checkbox("Grammar Check Optimization"):
+    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
+    prompt = PromptTemplate(template=template, input_variables=["text"])
+    chain = LLMChain(llm=llm, prompt=prompt)
+    chains.append(chain)
+
+if col2.checkbox("Punctuation Check"):
+    template = "As a professional technical document engineer, I would like you to optimize the following text and output the optimized content. The text is as follows: {text}"
+    prompt = PromptTemplate(template=template, input_variables=["text"])
+    chain = LLMChain(llm=llm, prompt=prompt)
+    chains.append(chain)
+
+if col2.checkbox("Sentence Structure Optimization"):
+    template = "As a professional technical document engineer, I would like you to optimize the sentence structure of the following text and output the optimized content. The text is as follows: {text}"
+    prompt = PromptTemplate(template=template, input_variables=["text"])
+    chain = LLMChain(llm=llm, prompt=prompt)
+    chains.append(chain)
+
+if col2.checkbox("Paragraph Structure Optimization"):
+    template = "As a professional technical document engineer, I would like you to optimize the paragraph structure of the following text, simplify complex paragraphs where possible using ordered or unordered lists, and output the optimized content. The text is as follows: {text}"
+    prompt = PromptTemplate(template=template, input_variables=["text"])
+    chain = LLMChain(llm=llm, prompt=prompt)
+    chains.append(chain)
+
+sequential_chain = SimpleSequentialChain(chains=chains)
 
 # Create two columns for the input and output
 col1, col2 = st.columns(2)
 
-# Show the input text in a readable format in the left column
-col1.markdown("**Original Content**")
-col1.markdown(input_text, unsafe_allow_html=True)
+
 
 # Adding a horizontal line
 st.markdown('---')
 
 if input_text:
+    # Show the input text in a readable format in the left column
+    col1.markdown("**Original Content**")
+    col1.markdown(input_text, unsafe_allow_html=True)
     response = chain.run(input_text)
 
     # Show the output text in a readable format in the right column
