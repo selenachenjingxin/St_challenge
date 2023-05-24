@@ -51,7 +51,7 @@ After Transformation:
 Content to be transformed by you:{text}
 
 '''
-llm = OpenAI(temperature=0.8)
+llm = OpenAI(temperature=0.8,max_tokens=2000)
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(llm=llm, prompt=prompt)
 
