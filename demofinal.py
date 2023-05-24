@@ -86,15 +86,6 @@ if input_text:
 
     col1.markdown(input_text, unsafe_allow_html=True)
     response = chain.run(input_text)
-
-    # Write to a temporary file
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.docx')
-
-    # Convert the markdown to docx format
-    pypandoc.convert_text(response, 'docx', format='md', outputfile=temp_file.name)
-
-    # Show the output text in a readable format in the right column
-
     col2.markdown(response, unsafe_allow_html=True)
     
 
