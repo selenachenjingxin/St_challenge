@@ -11,7 +11,6 @@ import base64
 import os
 from docx import Document
 import html2text
-import os
 
 # Show the input text in a readable format
 st.set_page_config(layout='wide')
@@ -89,3 +88,31 @@ if input_text:
     col2.markdown(response, unsafe_allow_html=True)
     
 
+# 生成优化结果的Word文档
+def generate_word_document(content):
+    document = Document()
+    document.add_paragraph(content)
+    
+    # 设置字体大小
+    for paragraph in document.paragraphs:
+        for run in paragraph.runs:
+            run.font.size = Pt(12)
+    
+    # 保存文档
+    output = io.BytesIO()
+    document.save(output)
+    output.seek(0)
+    
+    return output
+
+# 下载优化结果的Word文档
+def download_word_document(content, filename):
+    output = generate_word_document(content)
+    b64 = base64.b64encode(output.read()).decode()
+    href = f'<a href="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,{b64}" download="{filename}.docx">Download</a>'
+    
+    return href
+
+# 在应用程序中添加下载链接
+download_link = download_word_document(response, "optimized_document")
+col2.markdown(download_link, unsafe_allow_html=True)
