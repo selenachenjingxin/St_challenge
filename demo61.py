@@ -30,7 +30,15 @@ chain = LLMChain(llm=llm, prompt=prompt)
 chains.append(chain)
 
 st.sidebar.header("优化功能选择：")
+st.sidebar.markdown("### 内容质量优化（默认）")
+st.sidebar.checkbox("Rewrite to be Structured", value=True)
+st.sidebar.checkbox("Check and Correct Spelling", value=True)
+st.sidebar.checkbox("Check and Correct Grammar",value=True)
+st.sidebar.checkbox("Check and Correct Punctuation",value=True)
+st.sidebar.checkbox("Optimize Sentence Structure",value=True)
+st.sidebar.checkbox("Optimize Paragraph Structure",value=True)
 # 为每一个优化功能创建一个复选框，并根据用户的选择来创建对应的模型链
+"""
 if st.sidebar.checkbox("拼写检查优化"):
     template = "你是一位专业的技术文档工程师，现在我希望你对以下文本修正错别字和不正确的用词并输出修正后的内容。文本如下：{text}"
     prompt = PromptTemplate(template=template, input_variables=["text"])
@@ -60,7 +68,7 @@ if st.sidebar.checkbox("段落结构优化"):
     prompt = PromptTemplate(template=template, input_variables=["text"])
     chain = LLMChain(llm=llm, prompt=prompt)
     chains.append(chain)
-
+"""
 sequential_chain = SimpleSequentialChain(chains=chains)
 
 
