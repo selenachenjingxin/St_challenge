@@ -3,6 +3,7 @@ import docx
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain, SimpleSequentialChain
 from langchain.prompts import PromptTemplate
+from docx.shared import Pt
 import io
 
 st.title("一键文档优化工具")
@@ -23,6 +24,7 @@ main_template = """
 3. 标点符号检查：修改使用不恰当的标点符号。
 4. 句子结构优化：简化长难句。
 5. 段落结构优化：使用有序列表或无序列表等优化段落结构。
+6. 为文本撰写合适的标题
 请输出优化后的文本。
 """
 prompt = PromptTemplate(template=main_template, input_variables=["text"])
@@ -31,12 +33,15 @@ chains.append(chain)
 
 st.sidebar.header("优化功能选择：")
 st.sidebar.markdown("### 内容质量优化（默认）")
-st.sidebar.checkbox("Rewrite to be Structured", value=True)
-st.sidebar.checkbox("Check and Correct Spelling", value=True)
-st.sidebar.checkbox("Check and Correct Grammar",value=True)
-st.sidebar.checkbox("Check and Correct Punctuation",value=True)
-st.sidebar.checkbox("Optimize Sentence Structure",value=True)
-st.sidebar.checkbox("Optimize Paragraph Structure",value=True)
+
+st.sidebar.checkbox("拼写检查", value=True)
+st.sidebar.checkbox("语法检查",value=True)
+st.sidebar.checkbox("标点符号检查",value=True)
+st.sidebar.checkbox("句子结构优化",value=True)
+st.sidebar.checkbox("段落结构优化",value=True)
+st.sidebar.checkbox("术语检查", value=False)
+st.sidebar.checkbox("语义分析", value=False)
+st.sidebar.checkbox("文本去重", value=False)
 
 
 sequential_chain = SimpleSequentialChain(chains=chains)
@@ -62,7 +67,7 @@ else:
     # Add a file uploader for user to upload a docx file
     uploaded_file = st.file_uploader("上传一个 Word 文件", type=["docx"])
 
-    # If there is any uploaded file, process it
+        # If there is any uploaded file, process it
     if uploaded_file is not None:
         document = docx.Document(uploaded_file)
 
@@ -74,7 +79,17 @@ else:
 
         # Create a new document and add the optimized text as a single paragraph
         new_document = docx.Document()
-        new_document.add_paragraph(response)
+        
+        # Set document font size and style
+        run = new_document.add_paragraph().add_run()
+        font = run.font
+        font.size = Pt(12)
+        font.name = 'Arial'
+
+        # Add formatted paragraphs to the new document
+        paragraphs = response.split("\n")
+        for paragraph in paragraphs:
+            new_document.add_paragraph(paragraph)
 
         # Save the optimized document
         new_docx = io.BytesIO()
